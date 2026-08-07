@@ -8,7 +8,7 @@ const highlights = [
         title: 'Trusted Electronics Repair Experts',
         description:
             'Dedicated to providing professional repair solutions for smartphones, tablets, laptops, gaming consoles, and other electronic devices.',
-        href: '/what-we-repair',
+        href: '/service',
         cta: 'Explore Repairs',
         image: '/repair-console.jpeg',
         imageAlt: 'A gaming console being professionally repaired',
