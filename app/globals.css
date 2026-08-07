@@ -1,26 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Green Wireless typography */
+  --font-display: "Montserrat", sans-serif;
+  --font-body: "Poppins", sans-serif;
+
+  /* Logo palette: deep green, graphite, white, and supporting neutrals. */
+  --color-brand-green: #19752b;
+  --color-brand-green-dark: #115a20;
+  --color-brand-green-light: #e8f4ea;
+  --color-brand-graphite: #202329;
+  --color-brand-white: #ffffff;
+  --color-brand-silver: #d9ddda;
+  --color-brand-charcoal: #202329;
+
+  /* Backward-compatible names used by existing components. */
+  --color-brand-navy: #202329;
+  --color-brand-blue: #19752b;
+  --color-brand-orange: #19752b;
+
+  /* Short aliases for common brand roles. */
+  --color-brand: #19752b;
+  --color-brand-accent: #19752b;
+  --color-brand-cta: #19752b;
+
+  --radius-card: 1rem;
+  --shadow-card: 0 4px 24px rgb(32 35 41 / 8%);
+  --shadow-card-hover: 0 18px 50px rgb(25 117 43 / 18%);
 }
 
+/* Semantic Tailwind and shadcn-compatible utilities. */
 @theme inline {
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-display);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: #202329;
+  --card: #ffffff;
+  --card-foreground: #202329;
+  --popover: #ffffff;
+  --popover-foreground: #202329;
+  --primary: #19752b;
+  --primary-foreground: #ffffff;
+  --secondary: #202329;
+  --secondary-foreground: #ffffff;
+  --muted: #f0f4f1;
+  --muted-foreground: #626a64;
+  --accent: #e8f4ea;
+  --accent-foreground: #115a20;
+  --destructive: #dc2626;
+  --border: #d9ddda;
+  --input: #d9ddda;
+  --ring: #19752b;
+  --sidebar: #f7f9f7;
+  --sidebar-foreground: #202329;
+  --sidebar-primary: #19752b;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8f4ea;
+  --sidebar-accent-foreground: #115a20;
+  --sidebar-border: #d9ddda;
+  --sidebar-ring: #19752b;
+}
+
+.dark {
+  --background: #141619;
+  --foreground: #f7f9f7;
+  --card: #202329;
+  --card-foreground: #ffffff;
+  --popover: #202329;
+  --popover-foreground: #ffffff;
+  --primary: #3ba34c;
+  --primary-foreground: #ffffff;
+  --secondary: #2b2f35;
+  --secondary-foreground: #ffffff;
+  --muted: #292d31;
+  --muted-foreground: #b6bdb7;
+  --accent: #193d21;
+  --accent-foreground: #a9dfb0;
+  --destructive: #f87171;
+  --border: rgb(217 221 218 / 18%);
+  --input: rgb(217 221 218 / 24%);
+  --ring: #3ba34c;
+  --sidebar: #202329;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #3ba34c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #193d21;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgb(217 221 218 / 18%);
+  --sidebar-ring: #3ba34c;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
 }
